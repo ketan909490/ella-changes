@@ -1,0 +1,292 @@
+<section id="rug-finder-quiz-{{ section.id }}" class="rfq" data-default-url="/collections/all">
+  <h2 class="rfq__heading">{{ section.settings.heading }}</h2>
+  <div class="rfq__wrapper">
+    <div class="rfq__steps">
+      {%- assign total_questions = 5 -%}
+      
+      <!-- STEP 1 -->
+      <div class="rfq__step" data-step="1">
+        <div class="rfq__content">
+          <div class="rfq__left">
+            <div class="rfq__progress">
+              <div class="rfq__progress-text">Question 1 of {{ total_questions }}</div>
+              <div class="rfq__progress-bar"><div class="rfq__progress-bar-fill"></div></div>
+            </div>
+            <h3 class="rfq__question">What room are you buying for?</h3>
+            <div class="rfq__options rfq__options--single">
+              <button type="button" class="rfq__option" data-group="room" data-url="https://mannatrugs.com/collections/living-room-rugs">Living Room</button>
+              <button type="button" class="rfq__option" data-group="room" data-url="https://mannatrugs.com/collections/bedroom-rugs">Bedroom</button>
+              <button type="button" class="rfq__option" data-group="room" data-url="https://mannatrugs.com/collections/kids-room-rugs">Nursery / Kids Room</button>
+              <button type="button" class="rfq__option" data-group="room" data-url="https://mannatrugs.com/collections/dining-room-rugs">Dining Room</button>
+              <button type="button" class="rfq__option" data-group="room" data-url="https://mannatrugs.com/collections/halloween-rugs-machine-washable">Hallway</button>
+              <button type="button" class="rfq__option" data-group="room" data-url="https://mannatrugs.com/collections/entryway-rugs">Entryway</button>
+              <button type="button" class="rfq__option" data-group="room" data-url="https://mannatrugs.com/collections/anime-rugs">Office</button>
+              <button type="button" class="rfq__option" data-group="room" data-url="https://mannatrugs.com/collections/all">I want to browse all options</button>
+            </div>
+          </div>
+          <div class="rfq__right">
+            {%- if section.settings.room_image != blank -%}
+              <img src="{{ section.settings.room_image | image_url: width: 700 }}" alt="Room inspiration" loading="lazy" />
+            {%- else -%}
+              <div class="rfq__image-placeholder"></div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="rfq__step rfq__step--hidden" data-step="2">
+        <div class="rfq__content">
+          <div class="rfq__left">
+            <div class="rfq__progress">
+              <div class="rfq__progress-text">Question 2 of {{ total_questions }}</div>
+              <div class="rfq__progress-bar"><div class="rfq__progress-bar-fill"></div></div>
+            </div>
+            <h3 class="rfq__question">What size or shape do you need?</h3>
+            <div class="rfq__options rfq__options--single">
+              <button type="button" class="rfq__option" data-group="size" data-values="2' x 2',3' x 3',3' x 5',4' x 4',3’ x 5',4' x 6',2' x 3',2' x 5',3' x 6',3' x 8',3' x 10',3' x 12',3' x 14',3' x 16',3' x 20',4' x 4'">Small Rugs</button>
+              <button type="button" class="rfq__option" data-group="size" data-values="5' x 5',5' x 7',5' x 8',6' x 6',6' x 8',6' x 9',7' x 9',7' x 10',8' x 8',8' x 10',8' x 11'">Medium Rugs</button>
+              <button type="button" class="rfq__option" data-group="size" data-values="9’ x 9’,9’ x 12’,10’ x 10’,10’ x 12’,10’ x 14’,10’ x 14',12’ x 15’,15’ x 20’">Large Rugs</button>
+              <button type="button" class="rfq__option" data-group="size" data-values="">I want to browse all options</button>
+            </div>
+            <button type="button" class="rfq__back" style="display:none;">Back</button>
+          </div>
+          <div class="rfq__right">
+            {%- if section.settings.size_image != blank -%}
+              <img src="{{ section.settings.size_image | image_url: width: 700 }}" alt="Size inspiration" loading="lazy" />
+            {%- else -%}
+              <div class="rfq__image-placeholder"></div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3, 4, 5 (unchanged design) -->
+      <div class="rfq__step rfq__step--hidden" data-step="3">
+        <div class="rfq__content">
+          <div class="rfq__left">
+            <div class="rfq__progress">
+              <div class="rfq__progress-text">Question 3 of {{ total_questions }}</div>
+              <div class="rfq__progress-bar"><div class="rfq__progress-bar-fill"></div></div>
+            </div>
+            <h3 class="rfq__question">What colour palette do you prefer?</h3>
+            <div class="rfq__options rfq__options--multi rfq__options--grid">
+              {%- assign colours = "Neutrals,Blues,Greys,Blacks,Earth Tones,Reds & Burgundies,Multicolour,I want to browse all options" | split: "," -%}
+              {%- for colour in colours -%}
+                <button type="button" class="rfq__option" data-group="colour">{{ colour }}</button>
+              {%- endfor -%}
+            </div>
+            <button type="button" class="rfq__back" style="display:none;">Back</button>
+          </div>
+          <div class="rfq__right">
+            {%- if section.settings.colour_image != blank -%}
+              <img src="{{ section.settings.colour_image | image_url: width: 700 }}" alt="Colour inspiration" loading="lazy" />
+            {%- else -%}
+              <div class="rfq__image-placeholder"></div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+
+      <div class="rfq__step rfq__step--hidden" data-step="4">
+        <div class="rfq__content">
+          <div class="rfq__left">
+            <div class="rfq__progress">
+              <div class="rfq__progress-text">Question 4 of {{ total_questions }}</div>
+              <div class="rfq__progress-bar"><div class="rfq__progress-bar-fill"></div></div>
+            </div>
+            <h3 class="rfq__question">What feeling are you looking for?</h3>
+            <div class="rfq__options rfq__options--multi">
+              {%- assign feels = "Soft & Plush,Textured,Flat Weave / Low Pile,I want to browse all options" | split: "," -%}
+              {%- for feel in feels -%}
+                <button type="button" class="rfq__option" data-group="feel">{{ feel }}</button>
+              {%- endfor -%}
+            </div>
+            <button type="button" class="rfq__back" style="display:none;">Back</button>
+          </div>
+          <div class="rfq__right">
+            {%- if section.settings.feel_image != blank -%}
+              <img src="{{ section.settings.feel_image | image_url: width: 700 }}" alt="Texture inspiration" loading="lazy" />
+            {%- else -%}
+              <div class="rfq__image-placeholder"></div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+
+      <div class="rfq__step rfq__step--hidden" data-step="5">
+        <div class="rfq__content">
+          <div class="rfq__left">
+            <div class="rfq__progress">
+              <div class="rfq__progress-text">Question 5 of {{ total_questions }}</div>
+              <div class="rfq__progress-bar"><div class="rfq__progress-bar-fill"></div></div>
+            </div>
+            <h3 class="rfq__question">Do you want your rug to be washable?</h3>
+            <div class="rfq__options rfq__options--single">
+              <button type="button" class="rfq__option" data-group="washable">Absolutely</button>
+              <button type="button" class="rfq__option" data-group="washable">I want to browse all options</button>
+            </div>
+            <button type="button" class="rfq__back" style="display:none;">Back</button>
+          </div>
+          <div class="rfq__right">
+            {%- if section.settings.washable_image != blank -%}
+              <img src="{{ section.settings.washable_image | image_url: width: 700 }}" alt="Washable inspiration" loading="lazy" />
+            {%- else -%}
+              <div class="rfq__image-placeholder"></div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      if (window.rfqInitialized) return;
+      window.rfqInitialized = true;
+      const sectionEl = document.getElementById('rug-finder-quiz-{{ section.id }}');
+      const steps = sectionEl.querySelectorAll('.rfq__step');
+      let currentStepIndex = 0;
+      const selections = {
+        roomUrl: null,
+        sizeValues: null
+      };
+      
+      function showStep(i) {
+        steps.forEach((step, idx) => step.classList.toggle('active', idx === i));
+        currentStepIndex = i;
+        steps.forEach((step, idx) => {
+          const backBtn = step.querySelector('.rfq__back');
+          if (backBtn) backBtn.style.display = (idx === i && i > 0) ? 'inline-block' : 'none';
+        });
+      }
+
+      function updateProgress() {
+        const fills = sectionEl.querySelectorAll('.rfq__progress-bar-fill');
+        fills.forEach((fill, idx) => {
+          const percent = (idx + 1 <= currentStepIndex + 1) 
+            ? ((idx + 1) / {{ total_questions }}) * 100 
+            : ((currentStepIndex + 1) / {{ total_questions }}) * 100;
+          fill.style.width = percent + '%';
+        });
+      }
+
+      function handleRedirect() {
+        let finalUrl = selections.roomUrl || sectionEl.dataset.defaultUrl;
+        if (selections.sizeValues && selections.sizeValues.trim() !== "") {
+          const sizes = selections.sizeValues.split(',');
+          const filters = sizes.map(s => 'filter.v.option.size=' + encodeURIComponent(s.trim()));
+          finalUrl += (finalUrl.includes('?') ? '&' : '?') + filters.join('&');
+        }
+        window.location.href = finalUrl;
+      }
+
+      sectionEl.querySelectorAll('.rfq__option').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const group = this.dataset.group;
+          if (group === 'room') {
+            selections.roomUrl = this.dataset.url;
+            this.closest('.rfq__options').querySelectorAll('.rfq__option').forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+          } else if (group === 'size') {
+            selections.sizeValues = this.dataset.values;
+            this.closest('.rfq__options').querySelectorAll('.rfq__option').forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+          }
+          const stepEl = this.closest('.rfq__step');
+          const stepIndex = Array.from(steps).indexOf(stepEl);
+          if (stepIndex < steps.length - 1) {
+            showStep(stepIndex + 1);
+            updateProgress();
+          } else {
+            handleRedirect();
+          }
+        });
+      });
+
+      sectionEl.querySelectorAll('.rfq__back').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.preventDefault();
+          if (currentStepIndex > 0) {
+            showStep(currentStepIndex - 1);
+            updateProgress();
+          }
+        });
+      });
+
+      showStep(0);
+      updateProgress();
+    })();
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Rug Finder Quiz",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Discover Your Dream Rug"
+    },
+    {
+      "type": "image_picker",
+      "id": "room_image",
+      "label": "Image for room question"
+    },
+    {
+      "type": "image_picker",
+      "id": "size_image",
+      "label": "Image for size/shape question"
+    },
+    {
+      "type": "image_picker",
+      "id": "colour_image",
+      "label": "Image for colour question"
+    },
+    {
+      "type": "image_picker",
+      "id": "feel_image",
+      "label": "Image for feel question"
+    },
+    {
+      "type": "image_picker",
+      "id": "washable_image",
+      "label": "Image for washable question"
+    },
+    {
+      "type": "collection",
+      "id": "redirect_collection",
+      "label": "Redirect collection",
+      "info": "Select the collection to redirect to after the quiz. If left blank, the quiz will redirect to the current page with query parameters representing the shopper's answers."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection",
+        },
+        {
+          "type": "number",
+          "id": "limit",
+          "label": "Maximum products to load from this collection",
+          "default": 50
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rug Finder Quiz",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

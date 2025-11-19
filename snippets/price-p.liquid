@@ -1,0 +1,69 @@
+{%- liquid
+  if use_variant
+    assign target = product.selected_or_first_available_variant
+  else
+    assign target = product
+  endif
+
+  # ---- Always use first variant for price display ----
+  assign first_variant = product.variants.first
+  assign compare_at_price = first_variant.compare_at_price
+  assign price = first_variant.price
+  assign available = first_variant.available | default: false
+
+  if settings.currency_format_enable
+    assign money_price = price | money_with_currency
+  else
+    assign money_price = price | money
+  endif
+
+  if target == product and product.price_varies
+    assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+  endif
+-%}
+
+<div class="price
+  {%- if price_class %} {{ price_class }}{% endif -%}
+  {%- if available == false %} price--sold-out {% endif -%}
+  {%- if compare_at_price > price %} price--on-sale {% endif -%}
+  {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}">
+  <dl>
+    {%- comment -%} Regular Price (no discount) {%- endcomment -%}
+    <div class="price__regular">
+      <dd class="price__last">
+        <span class="price-item price-item--regular">
+          {% if settings.currency_format_enable %}
+            {{ price | money_with_currency }}
+          {% else %}
+            {{ price | money }}
+          {% endif %}
+        </span>
+      </dd>
+    </div>
+
+    {%- comment -%} Sale Price (compare_at > price) {%- endcomment -%}
+    {% if compare_at_price > price %}
+    <div class="price__sale">
+      <dd class="price__compare">
+        <s class="price-item price-item--regular">
+          {% if settings.currency_format_enable %}
+            {{ compare_at_price | money_with_currency }}
+          {% else %}
+            {{ compare_at_price | money }}
+          {% endif %}
+        </s>
+      </dd>
+
+      <dd class="price__last">
+        <span class="price-item price-item--sale">
+          {% if settings.currency_format_enable %}
+            {{ price | money_with_currency }}
+          {% else %}
+            {{ price | money }}
+          {% endif %}
+        </span>
+      </dd>
+    </div>
+    {% endif %}
+  </dl>
+</div>

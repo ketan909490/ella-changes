@@ -1,0 +1,98 @@
+{% schema %}
+{
+  "name": "custom Trust Badges",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#f9f6f1"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Text",
+          "default": "Trust Badge"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "custom Trust Badges",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="trust-badges-wrapper" style="background-color: {{ section.settings.background_color }};">
+  {% for block in section.blocks %}
+    <div class="trust-badge">
+      {% if block.settings.icon %}
+        <img src="{{ block.settings.icon | image_url: width: 64 }}" alt="Trust Icon" />
+      {% endif %}
+      <p>{{ block.settings.label }}</p>
+    </div>
+  {% endfor %}
+</div>
+
+<style>
+  .trust-badges-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+    border-radius: 10px;
+    gap: 60px;
+  }
+
+  .trust-badge {
+    
+    text-align: center;
+    min-width: 80px;
+  }
+
+  .trust-badge img {
+    height: 40px;
+    margin-bottom: 8px;
+    justify-self: center;
+  }
+
+  .trust-badge p {
+    font-size: 14px;
+    margin: 0;
+    color: #1e1e1e;
+  }
+
+  @media (max-width: 768px) {
+    .trust-badges-wrapper {
+      justify-content: center;
+      gap: 20px;
+    }
+    .trust-badge {
+      max-width:70px;
+      text-align: center;
+      min-width: 70px;
+    }
+  
+      .trust-badge img {
+      height: 30px;
+      margin-bottom: 8px;
+      width:30px
+    }
+  }
+</style>

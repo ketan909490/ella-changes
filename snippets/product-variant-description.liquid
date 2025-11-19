@@ -1,0 +1,80 @@
+{%- assign propertySize = product.metafields.c_f.property.value | size -%}
+{%- if  product.has_only_default_variant != true -%}
+    {%- assign propertySize = current_variant.metafields.c_f.property.value | size -%}
+    {%- if propertySize > 0 -%}
+        <div class="productView-info productView-propertyInfo" id="product-property-{{ product.id }}">
+            <h2 class="productView-info-title">{{ 'products.product.measurements' | t }}</h2>
+            {%- for property in current_variant.metafields.c_f.property.value -%}
+                <div class="productView-info-item">
+                    <span class="productView-info-name">{{ property.first | capitalize }}:</span>
+                    <span class="productView-info-value">{{ property.last | capitalize }}</span>
+                </div>
+            {%- endfor -%}
+        </div>
+    {%- else -%}
+        {%- assign propertySize = product.metafields.c_f.property.value | size -%}
+        {%- if propertySize > 0 -%}
+            <div class="productView-info productView-propertyInfo" id="product-property-{{ product.id }}">
+                <h2 class="productView-info-title">{{ 'products.product.measurements' | t }}</h2>
+                {%- for property in product.metafields.c_f.property.value -%}
+                    <div class="productView-info-item">
+                        <span class="productView-info-name">{{ property.first | capitalize }}:</span>
+                        <span class="productView-info-value">{{ property.last | capitalize }}</span>
+                    </div>
+                {%- endfor -%}
+            </div>
+        {%- endif -%}
+    {%- endif -%}
+{%- else -%}
+    {%- assign propertySize = product.metafields.c_f.property.value | size -%}
+    {%- if propertySize > 0 -%}
+        <div class="productView-info productView-propertyInfo" id="product-property-{{ product.id }}">
+            <h2 class="productView-info-title">{{ 'products.product.measurements' | t }}</h2>
+            {%- for property in product.metafields.c_f.property.value -%}
+                <div class="productView-info-item">
+                    <span class="productView-info-name">{{ property.first | capitalize }}:</span>
+                    <span class="productView-info-value">{{ property.last | capitalize }}</span>
+                </div>
+            {%- endfor -%}
+        </div>
+    {%- endif -%}
+{%- endif -%}
+<div class="flex relative">
+                <div class="relative inline-block" style="display: flex;
+    gap: 10px;
+    align-items: center;">
+                  <div class="custom-svg-estimate-wapper"><svg style="fill: none; width:30px; height: 30px;" width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              
+                  <path d="M83.3576 27.108C82.4554 25.9739 81.3116 25.0586 80.0108 24.43C78.71 23.8013 77.2856 23.4754 75.8429 23.4762H65.8556C65.8603 22.6264 65.6979 21.784 65.378 20.9976C65.058 20.2113 64.5867 19.4965 63.9912 18.8945C63.3957 18.2925 62.6879 17.8151 61.9084 17.49C61.129 17.1649 60.2934 16.9983 59.4498 17H20.7183C19.1469 17.0022 17.6306 17.584 16.456 18.6357C15.2814 19.6873 14.5297 21.1359 14.3431 22.7078L13.6839 28.3333H8.21429C7.3618 28.3333 6.54424 28.6745 5.94144 29.2818C5.33865 29.889 5 30.7126 5 31.5714C5 32.4302 5.33865 33.2539 5.94144 33.8611C6.54424 34.4684 7.3618 34.8095 8.21429 34.8095H12.9258L12.5461 38.0476H11.4286C10.5761 38.0476 9.75852 38.3888 9.15573 38.996C8.55293 39.6033 8.21429 40.4269 8.21429 41.2857C8.21429 42.1445 8.55293 42.9681 9.15573 43.5754C9.75852 44.1827 10.5761 44.5238 11.4286 44.5238H11.788L10.2711 57.4762H8.21429C7.3618 57.4762 6.54424 57.8174 5.94144 58.4246C5.33865 59.0319 5 59.8555 5 60.7143C5 61.5731 5.33865 62.3967 5.94144 63.004C6.54424 63.6112 7.3618 63.9524 8.21429 63.9524H9.51225L8.65374 71.284C8.54806 72.1915 8.63399 73.1114 8.90589 73.9832C9.17779 74.8549 9.62953 75.659 10.2315 76.3426C10.8334 77.0262 11.572 77.5739 12.3988 77.9498C13.2256 78.3257 14.1219 78.5213 15.029 78.5238H28.0925C28.7475 80.4159 29.9706 82.0558 31.5923 83.2162C33.2139 84.3766 35.1538 85 37.1429 85C39.132 85 41.0718 84.3766 42.6934 83.2162C44.3151 82.0558 45.5382 80.4159 46.1932 78.5238H66.6639C67.3189 80.4159 68.5421 82.0558 70.1637 83.2162C71.7853 84.3766 73.7252 85 75.7143 85C77.7034 85 79.6432 84.3766 81.2649 83.2162C82.8865 82.0558 84.1096 80.4159 84.7646 78.5238H88.5714C90.2759 78.5221 91.91 77.8392 93.1152 76.6251C94.3205 75.4109 94.9983 73.7647 95 72.0476V45.1721C94.9993 42.965 94.2519 40.824 92.8812 39.1022L83.3576 27.108ZM78.3479 31.1651L87.8683 43.1562C88.3268 43.7261 88.5753 44.4385 88.5714 45.1721V52.6191H64.1818L65.5025 29.9524H75.8429C76.3238 29.9531 76.7985 30.0625 77.232 30.2723C77.6655 30.4822 78.0468 30.7873 78.3479 31.1651ZM15.984 63.9524H21.0714C21.9239 63.9524 22.7415 63.6112 23.3443 63.004C23.9471 62.3967 24.2857 61.5731 24.2857 60.7143C24.2857 59.8555 23.9471 59.0319 23.3443 58.4246C22.7415 57.8174 21.9239 57.4762 21.0714 57.4762H16.7412L17.1203 54.2373L21.0714 54.2365C21.9239 54.2365 22.7415 53.8954 23.3443 53.2881C23.9471 52.6808 24.2857 51.8572 24.2857 50.9984C24.2857 50.1396 23.9471 49.316 23.3443 48.7087C22.7415 48.1015 21.9239 47.7603 21.0714 47.7603L17.8776 47.7611L18.2566 44.5238H24.2857C25.1382 44.5238 25.9558 44.1827 26.5586 43.5754C27.1614 42.9681 27.5 42.1445 27.5 41.2857C27.5 40.4269 27.1614 39.6033 26.5586 38.996C25.9558 38.3888 25.1382 38.0476 24.2857 38.0476H19.0138L19.3929 34.8095H21.0714C21.9239 34.8095 22.7415 34.4684 23.3443 33.8611C23.9471 33.2539 24.2857 32.4302 24.2857 31.5714C24.2857 30.7126 23.9471 29.889 23.3443 29.2818C22.7415 28.6745 21.9239 28.3333 21.0714 28.3333H20.1501L20.7183 23.4762L59.4561 23.4635L59.2693 26.6507C59.2693 26.6733 59.2568 26.6918 59.2568 26.7143L59.2638 26.7491L57.5625 55.8145L57.5539 55.8572L57.5586 55.8805L56.6122 72.0476H46.1932C45.5382 70.1558 44.3152 68.5161 42.6937 67.3557C41.0723 66.1954 39.1327 65.5719 37.1438 65.5718C35.1549 65.5716 33.2152 66.1947 31.5935 67.3547C29.9719 68.5148 28.7486 70.1543 28.0933 72.046L15.0384 72.0381L15.984 63.9524ZM37.1429 78.5238C36.5071 78.5238 35.8857 78.3339 35.3571 77.9781C34.8285 77.6223 34.4165 77.1166 34.1732 76.5249C33.93 75.9332 33.8663 75.2821 33.9903 74.654C34.1144 74.0259 34.4205 73.4489 34.87 72.996C35.3195 72.5432 35.8923 72.2348 36.5158 72.1098C37.1393 71.9849 37.7856 72.049 38.3729 72.2941C38.9602 72.5392 39.4622 72.9542 39.8154 73.4867C40.1686 74.0192 40.3571 74.6453 40.3571 75.2857C40.356 76.1442 40.017 76.9672 39.4145 77.5742C38.8119 78.1812 37.995 78.5227 37.1429 78.5238ZM75.7143 78.5238C75.0786 78.5238 74.4571 78.3339 73.9285 77.9781C73.3999 77.6223 72.988 77.1166 72.7447 76.5249C72.5014 75.9332 72.4377 75.2821 72.5618 74.654C72.6858 74.0259 72.9919 73.4489 73.4414 72.996C73.891 72.5432 74.4637 72.2348 75.0872 72.1098C75.7107 71.9849 76.357 72.049 76.9443 72.2941C77.5317 72.5392 78.0337 72.9542 78.3869 73.4867C78.7401 74.0192 78.9286 74.6453 78.9286 75.2857C78.9275 76.1442 78.5885 76.9672 77.9859 77.5742C77.3833 78.1812 76.5664 78.5227 75.7143 78.5238ZM84.7646 72.0476C84.1096 70.1556 82.8865 68.5157 81.2649 67.3553C79.6432 66.1949 77.7034 65.5714 75.7143 65.5714C73.7252 65.5714 71.7853 66.1949 70.1637 67.3553C68.5421 68.5157 67.3189 70.1556 66.6639 72.0476H63.0502L63.8051 59.0952H88.5714V72.0476H84.7646Z" fill="currentColor"></path>
+                
+            </svg>
+          </div>
+                  <div class="estimate-content hover:pointer-events-auto pointer-events-none pl-8 rtl:pl-0 rtl:pr-8 p-break-words rte">
+                    {% assign title = product.title | downcase %}
+                  
+                    {% if title contains "hand tufted" %}
+                      {% assign start_date = 'now' | date: "%s" | plus: 1209600 %}  
+                      {% assign end_date = 'now' | date: "%s" | plus: 2419200 %}   
+                  
+                    {% elsif title contains "machine washable" %}
+                      {% assign start_date = 'now' | date   : "%s" | plus: 1209600 %}  
+                      {% assign end_date = 'now' | date: "%s" | plus: 1814400 %}   
+                  
+                    {% elsif title contains "hand knotted" %}
+                      {% assign start_date = 'now' | date: "%s" | plus: 1814400 %} 
+                      {% assign end_date = 'now' | date: "%s" | plus: 3024000 %}   
+                  
+                    {% else %}
+                      {% assign start_date = 'now' | date: "%s" | plus: 604800 %}  
+                      {% assign end_date = 'now' | date: "%s" | plus: 2419200 %}   
+                    {% endif %}
+
+                    {% assign start_formatted = start_date | date: "%B %e" %}
+                    {% assign end_formatted = end_date | date: "%B %e" %}
+                  
+                    <p>Estimated delivery between <strong>{{ start_formatted }} and {{ end_formatted }}.</strong></p>
+                  </div>
+
+                  
+                </div>
+              </div>
