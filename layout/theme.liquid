@@ -24,14 +24,13 @@
         <link rel="canonical" href="{{ canonical_url }}" canonical-shop-url="{{ shop.url }}/">
         {%- if settings.favicon != blank -%}
             <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
-        {%- endif -%}
+        {%- endif -%}{% render 'meta-tags' %}
         <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
         <title>{{ page_title }} {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%} {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%} {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}</title>
 
         {%- if page_description -%}
             <meta name="description" content="{{ page_description | escape }}">
         {%- endif -%}
-        {% render 'meta-tags' %}
         {{ content_for_header }}
         {% render 'variable' %}
         {% render 'global-style' %}
